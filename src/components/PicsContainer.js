@@ -88,7 +88,10 @@ export default function PicsContainer(props) {
           open={true}
         ></PreviewDialog>
       ) : null}
-      <Header searchCallBack={(val) => filterResult(val)}></Header>
+      <Header
+        searchCallBack={(val) => filterResult(val)}
+        clearSearch={() => setData(dataSet)}
+      ></Header>
 
       {picsData && picsData.length ? (
         <div className="visual-root">
@@ -137,7 +140,7 @@ export default function PicsContainer(props) {
       ) : (
         <NoData>
           <img src={NoPic} style={{ width: `50%` }} alt="No data"></img>
-          <div>No Pics found!! Search by different keyword</div>
+          <div>No Pics found!! Search by different title</div>
         </NoData>
       )}
 

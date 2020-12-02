@@ -5,6 +5,7 @@ import LinkedIn from "../images/linkedin.svg";
 import Github from "../images/github.png";
 import Instagram from "../images/instagram.svg";
 import Tooltip from "@material-ui/core/Tooltip";
+import Behance from "../images/behance.png";
 import { Constants } from "../Constants";
 const FooterImg = styled.img`
   width: 18px;
@@ -20,10 +21,10 @@ function Footer() {
   return (
     <div className="footer">
       <FooterGrid container>
-        <FooterGrid item xs={6} justify="flex-end">
+        <FooterGrid item xs={6} style={{ justifyContent: "flex-end" }}>
           &copy; UI Designed and Developed by Indu
         </FooterGrid>
-        <FooterGrid item xs={6} justify="flex-start">
+        <FooterGrid item xs={6}>
           <Tooltip title="LinkedIn">
             <FooterImg
               src={LinkedIn}
@@ -47,6 +48,14 @@ function Footer() {
             }}
           >
             <FooterImg src={Instagram}></FooterImg>
+          </Tooltip>
+          <Tooltip
+            title="Behance"
+            onClick={() => {
+              window.open(Constants.socialMediaUrls.behance, "_blank");
+            }}
+          >
+            <FooterImg src={Behance}></FooterImg>
           </Tooltip>
         </FooterGrid>
       </FooterGrid>

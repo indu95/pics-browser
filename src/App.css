@@ -1,11 +1,14 @@
 .App {
   background-color: #151313;
-  font-family: Verdana;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: small;
   color: white;
   min-height: 100vh;
 }
-
+body {
+  margin: 0 0 100px;
+  background-color: #151313;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -53,6 +56,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+
   background-color: black;
   color: white;
   text-align: center;
@@ -68,4 +72,15 @@
   background-color: white;
   border-radius: 8px;
   padding: 1px;
+}
+.search_bar {
+  border: 2px solid #f44336b5;
+  border-radius: 24px !important;
+  height: 35px !important;
+  transition: transform 0.2s;
+}
+
+.search_bar:hover {
+  transform: scale(1.02);
+  border: 2px solid #f44336b5;
 }

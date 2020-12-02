@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import SearchBar from "material-ui-search-bar";
 import styled from "styled-components";
 
-const Heading = styled.div`
+const Heading = styled.span`
   text-align: left;
   font-size: 24px;
   padding: 8px;
@@ -24,14 +24,13 @@ function Header(props) {
 
           <Grid item xl={6} md={6} lg={6} sm={12} xs={12} className="pad_16">
             <SearchBar
-              style={{
-                border: `2px solid grey`,
-                borderRadius: `24px`,
-                height: `35px`,
-              }}
+              className="search_bar"
               value={searchValue}
               onChange={(newValue) => props.searchCallBack(newValue)}
-              onRequestSearch={() => props.searchCallBack(searchValue)}
+              onCancelSearch={() => props.clearSearch()}
+              onRequestSearch={(val) => {
+                props.searchCallBack(searchValue);
+              }}
             />
           </Grid>
         </Grid>
