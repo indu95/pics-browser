@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  background-color: #151313;
+  font-family: Verdana;
+  font-size: small;
+  color: white;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -35,4 +39,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+.visual-root {
+  height: 100%;
+  margin: auto;
+  position: relative;
+}
+.pad_16 {
+  padding: 16px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  z-index: 9999;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  padding: 8px;
+}
+.git {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1px;
 }
