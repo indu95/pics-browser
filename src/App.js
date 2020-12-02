@@ -1,9 +1,9 @@
 import "./App.css";
-import Picbrowser from "./components/PicBrowser";
+import PicsContainer from "./components/PicsContainer";
 function App() {
   return (
     <div className="App">
-      <Picbrowser></Picbrowser>
+      <PicsContainer></PicsContainer>
     </div>
   );
 }

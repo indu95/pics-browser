@@ -3,13 +3,8 @@ import { getPictures } from "../services/FetchPictures";
 import StackGrid, { transitions } from "react-stack-grid";
 import styled from "styled-components";
 import NotFoundImage from "../images/picture.svg";
-import { Grid } from "@material-ui/core";
 import PreviewDialog from "./PreviewImage";
-import SearchBar from "material-ui-search-bar";
 import NoPic from "../images/pictures.svg";
-
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Footer from "./Footer";
 import Header from "./Header";
 const { scaleDown } = transitions;
@@ -49,13 +44,6 @@ const NoImg = styled.div`
   font-size: 8px;
 `;
 
-const Heading = styled.div`
-  text-align: left;
-  font-size: 24px;
-  padding: 8px;
-  font-weight: 600;
-`;
-
 const NoData = styled.div`
   margin: 0;
   position: absolute;
@@ -65,15 +53,13 @@ const NoData = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export default function Picbrowser(props) {
+export default function PicsContainer(props) {
   const [dataSet, setDataset] = useState([]);
   const [picsData, setData] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
   const [previewData, setPreviewData] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   useEffect(() => {
     getData();
-    setSearchValue("");
   }, []);
 
   const getData = async () => {
@@ -82,7 +68,6 @@ export default function Picbrowser(props) {
     setData(pics);
   };
   const filterResult = (title) => {
-    setSearchValue(title);
     let filteredArr = [];
     dataSet.forEach((item) => {
       if (item.title.toLowerCase().includes(title.toLowerCase()))
@@ -103,28 +88,7 @@ export default function Picbrowser(props) {
           open={true}
         ></PreviewDialog>
       ) : null}
-      <AppBar position="sticky" style={{ backgroundColor: `black` }}>
-        <Toolbar>
-          <Grid container>
-            <Grid item xl={6} md={6} lg={6} sm={12} xs={12} className="pad_16">
-              <Heading>Pics Browser</Heading>
-            </Grid>
-
-            <Grid item xl={6} md={6} lg={6} sm={12} xs={12} className="pad_16">
-              <SearchBar
-                style={{
-                  border: `2px solid grey`,
-                  borderRadius: `24px`,
-                  height: `35px`,
-                }}
-                value={searchValue}
-                onChange={(newValue) => filterResult(newValue)}
-                onRequestSearch={() => filterResult(searchValue)}
-              />
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      <Header searchCallBack={(val) => filterResult(val)}></Header>
 
       {picsData && picsData.length ? (
         <div className="visual-root">
@@ -156,7 +120,10 @@ export default function Picbrowser(props) {
                       ></SLImg>
                     ) : (
                       <div>
-                        <img src={NotFoundImage} alt="no thumbnail image"></img>
+                        <img
+                          src={NotFoundImage}
+                          alt="No thumbnail image found"
+                        ></img>
                         <NoImg>No thumbnail found</NoImg>
                       </div>
                     )}
@@ -169,7 +136,7 @@ export default function Picbrowser(props) {
         </div>
       ) : (
         <NoData>
-          <img src={NoPic} style={{ width: `50%` }}></img>
+          <img src={NoPic} style={{ width: `50%` }} alt="No data"></img>
           <div>No Pics found!! Search by different keyword</div>
         </NoData>
       )}
