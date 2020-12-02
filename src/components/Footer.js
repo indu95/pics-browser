@@ -22,7 +22,7 @@ function Footer() {
     <div className="footer">
       <FooterGrid container>
         <FooterGrid item xs={6} style={{ justifyContent: "flex-end" }}>
-          &copy; UI Designed and Developed by Indu
+          &copy; Created by Indu
         </FooterGrid>
         <FooterGrid item xs={6}>
           <Tooltip title="LinkedIn">
