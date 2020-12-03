@@ -7,6 +7,7 @@ import PreviewDialog from "./PreviewImage";
 import NoPic from "../images/pictures.svg";
 import Footer from "./Footer";
 import Header from "./Header";
+import Loader from "./SLLoader";
 const { scaleDown } = transitions;
 const ThumbnailContainer = styled.span`
   margin: 8px;
@@ -58,21 +59,31 @@ export default function PicsContainer(props) {
   const [picsData, setData] = useState([]);
   const [previewData, setPreviewData] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+  const [showNoData, setNoData] = useState(false);
   useEffect(() => {
+    setShowLoader(true);
     getData();
   }, []);
 
   const getData = async () => {
     let pics = await getPictures();
+    if (!pics.length) setNoData(true);
+    else setNoData(false);
     setDataset(pics);
     setData(pics);
+    setShowLoader(false);
   };
+
   const filterResult = (title) => {
     let filteredArr = [];
     dataSet.forEach((item) => {
       if (item.title.toLowerCase().includes(title.toLowerCase()))
         filteredArr.push(item);
     });
+    if (!filteredArr.length) setNoData(true);
+    else setNoData(false);
+
     setData(filteredArr);
   };
   const displayPicture = (data) => {
@@ -88,6 +99,8 @@ export default function PicsContainer(props) {
           open={true}
         ></PreviewDialog>
       ) : null}
+
+      {showLoader ? <Loader showLoader={showLoader}></Loader> : null}
       <Header
         searchCallBack={(val) => filterResult(val)}
         clearSearch={() => setData(dataSet)}
@@ -137,12 +150,14 @@ export default function PicsContainer(props) {
             })}
           </StackGrid>
         </div>
-      ) : (
+      ) : null}
+
+      {showNoData ? (
         <NoData>
           <img src={NoPic} style={{ width: `50%` }} alt="No data"></img>
           <div>No Pics found!! Search by different title</div>
         </NoData>
-      )}
+      ) : null}
 
       <Footer></Footer>
     </div>
