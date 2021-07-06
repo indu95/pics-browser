@@ -19,7 +19,7 @@ function Header(props) {
       <Toolbar>
         <Grid container>
           <Grid item xl={6} md={6} lg={6} sm={12} xs={12} className="pad_16">
-            <Heading>Pics Browser</Heading>
+            <Heading>Reddit Pics Browser</Heading>
           </Grid>
 
           <Grid item xl={6} md={6} lg={6} sm={12} xs={12} className="pad_16">
